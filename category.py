@@ -2,7 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 
 
-def liens_categories():
+def get_category_link():
+    lks = []
     url = 'http://books.toscrape.com/catalogue/category/books_1/index.html'
     reponse = requests.get(url)
     soup = BeautifulSoup(reponse.text, 'html.parser')
@@ -11,9 +12,10 @@ def liens_categories():
         a = lien.find('a')
         link = 'http://books.toscrape.com/catalogue/category/' + a['href']
         links = link.replace('../', '')
-        print(links)
+        lks.append(links)
+    return lks
 
-def nom_category():
+def get_category_name():
     noms_cat = []
     url = 'http://books.toscrape.com/catalogue/category/books_1/index.html'
     reponse = requests.get(url)
@@ -22,5 +24,4 @@ def nom_category():
     for nom in noms:
         i = str.strip(nom.find('a').text)
         noms_cat.append(i)
-    print(noms_cat)
-
+    return noms_cat

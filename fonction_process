@@ -1,0 +1,21 @@
+from category import get_category_link
+from category import get_category_name
+from booksLinks import get_lst_products
+from pageProd import get_product_data
+import csv
+
+
+def process():
+    lst_names = get_category_name()
+    lst_url_categories = get_category_link()
+    dico = dict()
+    for i in range(len(lst_names)):
+        dico[lst_names[i]] = lst_url_categories[i]
+    for key, value in dico.items():
+        lst_products_urls = get_lst_products(value)
+    data = []
+    for product_url in lst_products_urls:
+        data.append(get_product_data(product_url))
+
+
+def write_in_file(key, data):

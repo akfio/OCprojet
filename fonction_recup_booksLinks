@@ -5,10 +5,10 @@ from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 
 value = 'http://books.toscrape.com/catalogue/category/books/young-adult_21/index.html'
+lst = []
 
-def get_lst_products(value):
-    lst = []
-    reponse = requests.get(value)
+def get_lst_products(url):
+    reponse = requests.get(url)
     soup = BeautifulSoup(reponse.text, 'html.parser')
     liens = soup.find('ol', {'class': 'row'}).find_all('article', {'class': 'product_pod'})
     for lien in liens:
@@ -16,12 +16,12 @@ def get_lst_products(value):
         link = 'http://books.toscrape.com/catalogue/' + a['href']
         links = link.replace('../../../', '')
         lst.append(links)
-    if soup.find('li', {'class': 'next'}) != None:
+    if soup.find('li', {'class': 'next'}) is not None:
         np = soup.find('li', {'class': 'next'}).find('a')['href']
-        a = urlparse(value).path
+        a = urlparse(url).path
         b = a.index('/', 26)
         c = a[:b + 1]
         next_page_url = 'http://books.toscrape.com' + c + np
         get_lst_products(next_page_url)
     else:
-        return lst
+        return

@@ -25,3 +25,4 @@ def get_category_name():
         i = str.strip(nom.find('a').text)
         noms_cat.append(i)
     return noms_cat
+

@@ -9,13 +9,15 @@ def process():
     lst_names = get_category_name()
     lst_url_categories = get_category_link()
     dico = dict()
+    dico2 = dict()
     for i in range(len(lst_names)):
         dico[lst_names[i]] = lst_url_categories[i]
     for key, value in dico.items():
         lst_products_urls = get_lst_products(value)
-    data = []
-    for product_url in lst_products_urls:
-        data.append(get_product_data(product_url))
+        dico2[key] = lst_products_urls
+    dico3 = dict()
+    for key, value in dico2.items():
+        dico3[key] = []
+        for v in value:
+            dico3[key].append(get_product_data(v))
 
-
-def write_in_file(key, data):

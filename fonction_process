@@ -20,4 +20,15 @@ def process():
         dico3[key] = []
         for v in value:
             dico3[key].append(get_product_data(v))
+    write_in_file(dico3)
 
+
+def write_in_file(dico):
+    for key, value in dico.items():
+        with open(key + '.csv', 'w', newline='') as file:
+            csv_writer = csv.writer(file, delimiter='\t')
+            csv_writer.writerow(
+                ['product_page_url', 'universal_product_code', 'title', 'price_including_tax', 'price_excluding_tax',
+                 'number_available', 'product_description', 'category', 'review_rating', 'image_url'])
+            for data in value:
+                csv.writer(file).writerow(data)

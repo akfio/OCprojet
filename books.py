@@ -66,14 +66,6 @@ def get_product_data(url):
     category = str.strip(soup.find_all('li')[2].text)
     review_rating = soup.find("p", "star-rating")["class"][-1]
     image_url = 'http://books.toscrape.com/' + soup.find("img")["src"].replace('../../', '')
-    book_info = {product_page_url,
-                 universal_product_code,
-                 title,
-                 price_including_tax,
-                 price_excluding_tax,
-                 number_available,
-                 product_description,
-                 category,
-                 review_rating,
-                 image_url}
+    book_info = [product_page_url, universal_product_code, title, price_including_tax, price_excluding_tax,
+                 number_available, product_description, category, review_rating, image_url]
     return book_info

@@ -1,0 +1,34 @@
+from category import get_category_link
+from category import get_category_name
+from booksLinks import get_lst_products
+from pageProd import get_product_data
+import csv
+
+
+def process():
+    lst_names = get_category_name()
+    lst_url_categories = get_category_link()
+    dico = dict()
+    dico2 = dict()
+    for i in range(len(lst_names)):
+        dico[lst_names[i]] = lst_url_categories[i]
+    for key, value in dico.items():
+        lst_products_urls = get_lst_products(value)
+        dico2[key] = lst_products_urls
+    dico3 = dict()
+    for key, value in dico2.items():
+        dico3[key] = []
+        for v in value:
+            dico3[key].append(get_product_data(v))
+    write_in_file(dico3)
+
+
+def write_in_file(dico):
+    for key, value in dico.items():
+        with open(key + '.csv', 'w', newline='') as file:
+            csv_writer = csv.writer(file, delimiter='\t')
+            csv_writer.writerow(
+                ['product_page_url', 'universal_product_code', 'title', 'price_including_tax', 'price_excluding_tax',
+                 'number_available', 'product_description', 'category', 'review_rating', 'image_url'])
+            for data in value:
+                csv.writer(file).writerow(data)

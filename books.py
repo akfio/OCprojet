@@ -68,4 +68,35 @@ def get_product_data(url):
     image_url = 'http://books.toscrape.com/' + soup.find("img")["src"].replace('../../', '')
     book_info = [product_page_url, universal_product_code, title, price_including_tax, price_excluding_tax,
                  number_available, product_description, category, review_rating, image_url]
-    return book_info
+    return book_info 
+
+
+def dl_img(url, file_path, file_name):
+    full_path = file_path + file_name.replace('/', '') + '.jpeg'
+    urllib.request.urlretrieve(url, full_path)
+
+
+def write_in_file(dico):
+    img = []
+    title = []
+    dico4 = dict()
+    for key, value in dico.items():
+        p = pathlib.Path(key + "/")
+        p.mkdir(parents=True, exist_ok=True)
+        c = key + '.csv'
+        filepath = p / c
+        with filepath.open("w", encoding="utf-8") as file:
+            csv_writer = csv.writer(file, delimiter='\t')
+            csv_writer.writerow(
+                ['product_page_url', 'universal_product_code', 'title', 'price_including_tax',
+                 'price_excluding_tax',
+                 'number_available', 'product_description', 'category', 'review_rating', 'image_url'])
+            for data in value:
+                csv.writer(file).writerow(data)
+                img.append(data[-1])
+                title.append(data[2])
+    for i in range(len(img)):
+        dico4[title[i]] = img[i]
+    os.mkdir('Images/')
+    for key, value in dico4.items():
+        dl_img(value, 'Images/', key)

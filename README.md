@@ -22,19 +22,19 @@ Un fichier Images est également crée avec l'ensemble des images des livres pr�
 
 ## Installation 
 
-Tout d'abord, créer un dossier via la commande mkdirv(ici nommé projet2) dans lequel se trouvera l'environnement virtuel et l'ensemble des données extraites. Puis y accéder via la commande cd.
+Tout d'abord, créez un dossier via la commande mkdirv(ici nommé projet2) dans lequel se trouvera l'environnement virtuel et l'ensemble des données extraites. Puis y accéder via la commande cd.
 
 ```python
 mkdir projet2
 cd projet2
 ```
-Déplacer Process_Scraping.py et requierements.txt  dans le dossier 
-Ensuite, créer un environnement virtuel dans le dossier (ici nommé env): 
+Déplacez Process_Scraping.py et requierements.txt  dans le dossier. 
+Ensuite, créez un environnement virtuel dans le dossier (ici nommé env): 
 
 ```python
 python3 -m venv env
 ```
-Puis activer le via : 
+Puis activez le via : 
 
 ```python
 source env/bin/activate #MacOS ou Unix
@@ -51,4 +51,4 @@ pip install -r requirements.txt
 
 Vous pouvez désormais lancer le script ! 
 vous devriez obtenir un dossier par catégorie avec le fichier .csv correspondant détenant les datas des livres référencés dans cette catégorie. 
-Vous obtenez également un fichier "Images" avec l'ensemble des covers des livres du site, nommé par leur titre.
+Vous obtenez également un fichier "Images" avec l'ensemble des covers des livres du site, nommées par leur titre.

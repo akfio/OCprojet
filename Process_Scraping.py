@@ -1,11 +1,4 @@
-import requests
-from bs4 import BeautifulSoup
-from urllib.parse import urlparse
-import csv
-import pathlib
-import urllib.request
-import os
-
+#Ensemble des fonctions comprises dans le process de scaping du site BookToScrap, activé par la fonction process.
 
 def get_category_link():
     lks = []

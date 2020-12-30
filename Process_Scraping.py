@@ -3,8 +3,8 @@
 def get_category_link():
     lks = []
     url = 'http://books.toscrape.com/catalogue/category/books_1/index.html'
-    reponse = requests.get(url)
-    soup = BeautifulSoup(reponse.text, 'html.parser')
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
     liens = soup.find('div', {'class': 'side_categories'}).find('ul', {'class': 'nav nav-list'}).find('li').find(
         'ul').find_all('li')
     for lien in liens:
@@ -18,8 +18,8 @@ def get_category_link():
 def get_category_name():
     noms_cat = []
     url = 'http://books.toscrape.com/catalogue/category/books_1/index.html'
-    reponse = requests.get(url)
-    soup = BeautifulSoup(reponse.text, 'html.parser')
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
     noms = soup.find('div', {'class': 'side_categories'}).find('ul', {'class': 'nav nav-list'}).find('li').find(
         'ul').find_all('li')
     for nom in noms:

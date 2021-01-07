@@ -22,7 +22,7 @@ Un fichier Images est également crée avec l'ensemble des images des livres pr�
 
 ## Installation 
 
-Tout d'abord, créez un dossier via la commande mkdirv(ici nommé projet2) dans lequel se trouvera l'environnement virtuel et l'ensemble des données extraites. Puis y accéder via la commande cd.
+Tout d'abord, créez un dossier via la commande mkdir (ici nommé projet2) dans lequel se trouvera l'environnement virtuel et l'ensemble des données extraites. Puis y accéder via la commande cd.
 
 ```python
 mkdir projet2
